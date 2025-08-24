@@ -15,8 +15,18 @@ module.exports = {
     static: path.resolve(__dirname, "dist"),
     port: 8080,
     hot: true,
+    historyApiFallback: true,
   },
-  plugins: [new HtmlWebpackPlugin({ template: "./src/index.html" })],
+  plugins: [
+    new HtmlWebpackPlugin({ template: "./src/index.html" }),
+    new CopyPlugin({
+      patterns: [
+        { from: "./src/templates", to: "templates" },
+        { from: "./src/static/images", to: "images" },
+        { from: "./src/static/fonts", to: "fonts" },
+      ],
+    }),
+  ],
   module: {
     rules: [
       {
