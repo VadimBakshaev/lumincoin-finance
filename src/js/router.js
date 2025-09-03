@@ -193,8 +193,8 @@ export class Router {
     if (element && !element.href) {
       e.preventDefault();
       // берем url из ссылки (какой вариант лучше?)
-      const url = new URL(element.href).pathname;
-      //const url = element.href.replace(location.origin, "");
+      //const url = new URL(element.href).pathname;
+      const url = element.href.replace(location.origin, "");
 
       // если адрес пустой или он совпадает с текущим
       if (!url || url.replace("#", "") === location.pathname) {
