@@ -29,3 +29,60 @@ body {
 .form-container {
     max-width: 397px;
 }
+
+.btn-toggle::after {
+    content: '\22C1';
+    width: 1em;
+    margin-left: 70px;
+    line-height: 0;
+    transition: transform .35s ease;
+    transform-origin: .5em 50%;
+}
+
+.btn-toggle[aria-expanded="false"]::after {
+    transform: rotate(90deg);
+}
+
+.active,
+.nav-link:hover,
+.nav-link:focus {
+    color: white !important;
+    background-color: var(--bs-nav-pills-link-active-bg);
+}
+
+.nav-item.border {
+
+    &:focus-within,
+    &:has(.nav-link.active) {       
+        border-color: #0d6efd !important;
+    }
+}
+
+.mw-352 {
+    max-width: 352px !important;
+}
+
+#addItem:hover {
+    cursor: pointer;
+}
+
+.open {
+    display: flex !important;
+    position: fixed;
+    background-color: white;
+}
+
+.close {
+    display: none;
+}
+
+.box {
+    overflow-x: auto;
+    max-width: 88vw;
+    width: max-content;
+    position: relative;
+
+    @media (min-width: 786px) {
+        width: 100%;
+    }
+}

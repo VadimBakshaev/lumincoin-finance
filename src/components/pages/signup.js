@@ -1,5 +1,5 @@
 export class Signup {
   constructor() {
-    console.log("signup");
+    // some code in the future
   }
 }

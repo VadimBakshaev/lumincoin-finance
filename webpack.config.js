@@ -5,9 +5,9 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/js/main.js",
+  entry: "./src/js/app.js",
   output: {
-    filename: "main.js",
+    filename: "app.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
   },

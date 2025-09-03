@@ -2,10 +2,10 @@ import "../scss/styles.scss";
 import * as bootstrap from "bootstrap";
 import { Router } from "./router";
 
-class Main {
+class App {
   constructor() {
     new Router();
   }
 }
 
-(new Main());
+(new App());

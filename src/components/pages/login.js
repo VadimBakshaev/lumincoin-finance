@@ -1,5 +1,5 @@
 export class Login {
   constructor() {
-    console.log("login");
+    // some code in the future
   }
 }

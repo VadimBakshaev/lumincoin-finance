@@ -1,0 +1,49 @@
+<div class="d-flex w-100">
+    <div class="d-lg-none p-2 position-absolute" id="navBtn"><i class="bi bi-list"></i></div>
+    <div class="fixed-top z-1 w-100 vh-100 bg-black bg-success bg-opacity-50" style="display: none;" id="overlay"></div>
+    <aside class="d-none d-lg-flex z-2 flex-column vh-100 border-end " style="width: 219px;" id="navBar">
+        <div class="mt-3 mx-auto">
+            <img src="./../../images/logo.png" style="width: 98px;" alt="logo">
+        </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mt-4 mb-auto p-3 fs-7">
+            <li class="nav-item "><a href="/" class="nav-link link-body-emphasis"><i
+                        class="bi bi-house me-2"></i>Главная</a></li>
+            <li class="nav-item "><a href="/inc-exp" class="nav-link link-body-emphasis"><i
+                        class="bi bi-cash-coin me-2"></i>Доходы
+                    & Расходы</a></li>
+            <li class="nav-item border rounded border-white overflow-hidden">
+                <button
+                    class="nav-link btn btn-toggle d-inline-flex align-items-center rounded-0 border-0 w-100 link-body-emphasis"
+                    data-bs-toggle="collapse" data-bs-target="#category-collapse" aria-expanded="false">
+                    Категории
+                </button>
+                <div class="collapse" id="category-collapse">
+                    <ul class="btn-toggle-nav list-unstyled">
+                        <li><a href="/income"
+                                class="nav-link link-body-emphasis d-inline-flex text-decoration-none rounded-0 w-100">Доходы</a>
+                        </li>
+                        <li><a href="/expenses"
+                                class="nav-link link-body-emphasis d-inline-flex text-decoration-none rounded-0 w-100">Расходы</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>            
+        </ul>
+        <p class="ms-3 mb-0 text-medium fs-7">Баланс: <span class="text-primary"
+                id="balance">500$</span></p>
+        <hr>
+        <div class="d-flex align-items-center p-3 pt-0">
+            <div>
+                <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="18" cy="18" r="18" fill="#D9D9D9" />
+                    <path
+                        d="M18 18C19.0609 18 20.0783 17.5786 20.8284 16.8284C21.5786 16.0783 22 15.0609 22 14C22 12.9391 21.5786 11.9217 20.8284 11.1716C20.0783 10.4214 19.0609 10 18 10C16.9391 10 15.9217 10.4214 15.1716 11.1716C14.4214 11.9217 14 12.9391 14 14C14 15.0609 14.4214 16.0783 15.1716 16.8284C15.9217 17.5786 16.9391 18 18 18ZM20.6667 14C20.6667 14.7072 20.3857 15.3855 19.8856 15.8856C19.3855 16.3857 18.7072 16.6667 18 16.6667C17.2928 16.6667 16.6145 16.3857 16.1144 15.8856C15.6143 15.3855 15.3333 14.7072 15.3333 14C15.3333 13.2928 15.6143 12.6145 16.1144 12.1144C16.6145 11.6143 17.2928 11.3333 18 11.3333C18.7072 11.3333 19.3855 11.6143 19.8856 12.1144C20.3857 12.6145 20.6667 13.2928 20.6667 14ZM26 24.6667C26 26 24.6667 26 24.6667 26H11.3333C11.3333 26 10 26 10 24.6667C10 23.3333 11.3333 19.3333 18 19.3333C24.6667 19.3333 26 23.3333 26 24.6667ZM24.6667 24.6613C24.6653 24.3333 24.4613 23.3467 23.5573 22.4427C22.688 21.5733 21.052 20.6667 18 20.6667C14.9467 20.6667 13.312 21.5733 12.4427 22.4427C11.5387 23.3467 11.336 24.3333 11.3333 24.6613H24.6667Z"
+                        fill="#6C757D" />
+                </svg>
+            </div>
+            <p class="mb-0 ms-3 fs-7">Roman Chernov</p>
+        </div>
+    </aside>
+    <main class="w-100" id="main-content"></main>
+</div>

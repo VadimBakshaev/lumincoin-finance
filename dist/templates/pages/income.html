@@ -1,0 +1,43 @@
+<div class="p-4 p-md-8">
+    <h1 class="fs-1 text-medium mb-6 mt-3">Доходы</h1>
+    <div class="container row gap-3_5 ">
+        <div class="p-3 p-md-3_5 text-medium border rounded mw-352">
+            <h3 class="fs-3 ">Депозиты</h3>
+            <a class="btn btn-primary fs-7" href="/edit-category-income">Редактировать</a>
+            <a class="btn btn-danger fs-7" data-bs-toggle="modal" data-bs-target="#modalDialog">Удалить</a>
+        </div>
+        <div class="p-3 p-md-3_5 text-medium border rounded mw-352">
+            <h3 class="fs-3 ">Зарплата</h3>
+            <a class="btn btn-primary fs-7" href="/edit-category-income">Редактировать</a>
+            <a class="btn btn-danger fs-7" data-bs-toggle="modal" data-bs-target="#modalDialog">Удалить</a>
+        </div>
+        <div class="p-3 p-md-3_5 text-medium border rounded mw-352">
+            <h3 class="fs-3 ">Сбережения</h3>
+            <a class="btn btn-primary fs-7" href="/edit-category-income">Редактировать</a>
+            <a class="btn btn-danger fs-7" data-bs-toggle="modal" data-bs-target="#modalDialog">Удалить</a>
+        </div>
+        <div class="p-3 p-md-3_5 text-medium border rounded mw-352">
+            <h3 class="fs-3 ">Инвестиции</h3>
+            <a class="btn btn-primary fs-7" href="/edit-category-income">Редактировать</a>
+            <a class="btn btn-danger fs-7" data-bs-toggle="modal" data-bs-target="#modalDialog">Удалить</a>
+        </div>
+        <a class="p-3 p-md-3_5 align-content-center text-medium text-decoration-none border rounded mw-352"
+            href="/add-category-income" id="addItem">
+            <div class="text-medium text-body-tertiary fs-3 text-center">+</div>
+        </a>
+    </div>
+</div>
+
+<div class="container modal fade" id="modalDialog" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-2 p-md-4 p-lg-6">
+                <h5 class="text-medium fs-5 mb-3_5">Вы действительно хотите удалить категорию? Связанные доходы
+                    останутся без
+                    категории.</h5>
+                <button type="button" class="btn btn-primary fs-7">Да, удалить</button>
+                <button type="button" class="btn btn-danger fs-7 ms-1" data-bs-dismiss="modal">Не удалять</button>
+            </div>
+        </div>
+    </div>
+</div>

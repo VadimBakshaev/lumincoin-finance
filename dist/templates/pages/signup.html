@@ -1,3 +1,44 @@
-<a href="/main">main</a>
-<a href="/login">login</a>
-<a href="/signup">signup</a>
+<main class="d-flex flex-column align-items-center vh-100 justify-content-center p-2">
+    <div class="mb-7">
+        <img src="./../../images/logo.png" alt="logo">
+    </div>
+    <h2 class="text-medium fs-1 mb-4">Создайте аккаунт</h2>
+    <form class="d-flex flex-column w-100 form-container">
+        <div class="mb-2">
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-person" style=" font-weight: bold; color: #6C757D;"></i>
+                </div>
+                <input type="text" class="form-control" id="name" placeholder="Имя">
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-person" style=" font-weight: bold; color: #6C757D;"></i>
+                </div>
+                <input type="text" class="form-control" id="lastName" placeholder="Фамилия">
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-envelope-open"
+                        style=" font-weight: bold; color: #6C757D;"></i></div>
+                <input type="email" class="form-control" id="email" placeholder="Электронная почта">
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-lock" style="color: #6C757D;"></i></div>
+                <input type="password" class="form-control " id="password" placeholder="Пароль">
+            </div>
+        </div>
+        <div class="mb-2">
+            <div class="input-group">
+                <div class="input-group-text"><i class="bi bi-lock" style="color: #6C757D;"></i></div>
+                <input type="password" class="form-control " id="passwordRepeat" placeholder="Подтверждение пароля">
+            </div>
+        </div>
+
+        <button class="btn btn-primary  my-2" type="button">Войти</button>
+        <p class="fs-8">Уже есть аккаунт?<a href="/login" class="ms-2">Войдите в систему</a></p>
+    </form>
+</main>
