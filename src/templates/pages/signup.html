@@ -8,37 +8,51 @@
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-person" style=" font-weight: bold; color: #6C757D;"></i>
                 </div>
-                <input type="text" class="form-control" id="name" placeholder="Имя">
+                <input type="text" class="form-control" id="name" data-rule="^[А-ЯЁ][а-яё\s]*$" placeholder="Имя" required>
+                <div class="invalid-feedback fs-8">
+                    Имя может содержать русские буквы и пробелы, и должно начинаться с большой буквы.
+                </div>
             </div>
         </div>
         <div class="mb-2">
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-person" style=" font-weight: bold; color: #6C757D;"></i>
                 </div>
-                <input type="text" class="form-control" id="lastName" placeholder="Фамилия">
+                <input type="text" class="form-control" id="lastName" data-rule="^[А-ЯЁ][а-яё\s]*$" placeholder="Фамилия" required>
+                <div class="invalid-feedback fs-8">
+                    Фамилия может содержать русские буквы и пробелы, и должно начинаться с большой буквы.
+                </div>
             </div>
         </div>
         <div class="mb-2">
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-envelope-open"
                         style=" font-weight: bold; color: #6C757D;"></i></div>
-                <input type="email" class="form-control" id="email" placeholder="Электронная почта">
+                <input type="email" class="form-control" id="email" data-rule="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" placeholder="Электронная почта" required>
+                <div class="invalid-feedback fs-8">
+                    Пожалуйста введите корректный email.
+                </div>
             </div>
         </div>
         <div class="mb-2">
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-lock" style="color: #6C757D;"></i></div>
-                <input type="password" class="form-control " id="password" placeholder="Пароль">
+                <input type="password" class="form-control " id="password" data-rule="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{8,}$" placeholder="Пароль" required>
+                <div class="invalid-feedback fs-8">
+                    Пароль должен содержать минимум 8 символов, включая одну заглавную букву и цифру.
+                </div>
             </div>
         </div>
         <div class="mb-2">
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-lock" style="color: #6C757D;"></i></div>
-                <input type="password" class="form-control " id="passwordRepeat" placeholder="Подтверждение пароля">
+                <input type="password" class="form-control " id="passwordRepeat" placeholder="Подтверждение пароля" required>
+                <div class="invalid-feedback fs-8">
+                    Пароли должны совпадать.
+                </div>
             </div>
-        </div>
 
-        <button class="btn btn-primary  my-2" type="button">Войти</button>
-        <p class="fs-8">Уже есть аккаунт?<a href="/login" class="ms-2">Войдите в систему</a></p>
+            <button class="btn btn-primary my-2 w-100" id="submit" type="button">Войти</button>
+            <p class="fs-8">Уже есть аккаунт?<a href="/login" class="ms-2">Войдите в систему</a></p>
     </form>
 </main>

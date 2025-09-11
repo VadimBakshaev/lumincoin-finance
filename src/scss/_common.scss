@@ -27,53 +27,71 @@ body {
 }
 
 .form-container {
-    max-width: 397px;
+    max-width: 25rem;
 }
 
-.btn-toggle::after {
-    content: '\22C1';
-    width: 1em;
-    margin-left: 70px;
-    line-height: 0;
-    transition: transform .35s ease;
-    transform-origin: .5em 50%;
+.bi-chevron-left {
+
+    &::before {
+        transition: transform .35s ease;
+    }
 }
 
-.btn-toggle[aria-expanded="false"]::after {
-    transform: rotate(90deg);
+.btn-toggle[aria-expanded="true"] {
+    .bi-chevron-left {
+        &::before {
+            transform: rotate(-90deg);
+        }
+    }
+}
+
+.nav {
+    --bs-nav-link-color: black;
+    --bs-nav-link-hover-color: white;
 }
 
 .active,
 .nav-link:hover,
 .nav-link:focus {
-    color: white !important;
     background-color: var(--bs-nav-pills-link-active-bg);
 }
 
 .nav-item.border {
+    --bs-border-color: white;
 
     &:focus-within,
-    &:has(.nav-link.active) {       
-        border-color: #0d6efd !important;
+    &:has(.nav-link.active) {
+        --bs-border-color: #0d6efd;
     }
 }
 
-.mw-352 {
-    max-width: 352px !important;
+.cathegory {
+    max-width: 22rem;
 }
 
-#addItem:hover {
-    cursor: pointer;
-}
-
-.open {
-    display: flex !important;
-    position: fixed;
-    background-color: white;
+.add-item,
+.pointer {
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .close {
     display: none;
+
+    &.open {
+        display: flex;
+        position: fixed;
+        background-color: white;
+    }
+
+    &.open-block {
+        display: block;
+    }
+}
+
+.dialog {
+    top: -5rem;
 }
 
 .box {
