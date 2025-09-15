@@ -11,6 +11,7 @@ import { Expenses } from "../components/pages/expenses";
 import { IncExp } from "../components/pages/inc-exp";
 import { Income } from "../components/pages/income";
 import { Login } from "../components/pages/login";
+import { Logout } from "../components/pages/logout";
 import { Main } from "../components/pages/main";
 import { Signup } from "../components/pages/signup";
 
@@ -41,7 +42,7 @@ export class Router {
         layout: false,
         depends: null,
         load: () => {
-          new Login();
+          new Login(this.openRoute);
         },
       },
       {
@@ -51,7 +52,7 @@ export class Router {
         layout: false,
         depends: null,
         load: () => {
-          new Signup();
+          new Signup(this.openRoute);
         },
       },
       {
@@ -164,6 +165,12 @@ export class Router {
           new EditExpense();
         },
       },
+      {
+        route: "/logout",
+        load: () => {
+          new Logout(this.openRoute);
+        },
+      },
     ];
     this.init();
   }
@@ -218,7 +225,7 @@ export class Router {
             document.getElementById("main-content"),
             newRoute.filePath
           );
-          this.layout = new Layout();
+          this.layout = new Layout(this.openRoute);
           this.layout.setActive(newRoute.route);
         }
       } else {

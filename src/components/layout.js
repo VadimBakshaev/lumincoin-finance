@@ -1,5 +1,9 @@
+import { AuthUtility } from "../utilities/auth-utility";
+
 export class Layout {
-  constructor() {
+  constructor(openRoute) {
+    this.openRoute = openRoute;
+    this.checkAuthorization();
     this.navBtnEl = document.getElementById("navBtn");
     this.overlayEl = document.getElementById("overlay");
     this.navBarEl = document.getElementById("navBar");
@@ -9,6 +13,14 @@ export class Layout {
     this.userEl = document.getElementById("user");
     this.userDialogEl = document.getElementById("userDialog");
     this.initListener();
+  }
+  checkAuthorization() {
+    if (AuthUtility.getInfo('accessToken')) {
+      this.user = AuthUtility.getInfo('user');
+      document.getElementById('userName').innerText = `${this.user.name} ${this.user.lastName}`;
+    } else {
+      this.openRoute('/logout');
+    }
   }
   initListener() {
     this.navBtnEl.addEventListener("click", this.openMenu.bind(this));
