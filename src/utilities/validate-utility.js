@@ -45,4 +45,19 @@ export class ValidateUtility {
     });
     return valid;
   }
+
+  static serializeForm(form) {
+    const data = {};
+    if (ValidateUtility.validateForm(form)) {
+      form.forEach((element) => {
+        if (element.id === 'rememberMe') {
+          data[element.id] = element.checked
+        } else {
+          data[element.id] = element.value;
+        }
+      });
+      return data;
+    }
+    return null;
+  }
 }
