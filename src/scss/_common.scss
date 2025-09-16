@@ -30,6 +30,10 @@ body {
     max-width: 25rem;
 }
 
+.input-group-text{
+    color: #6C757D;
+}
+
 .bi-chevron-left {
 
     &::before {
@@ -65,8 +69,12 @@ body {
     }
 }
 
-.cathegory {
-    max-width: 22rem;
+.row>* {
+    flex-basis: 22rem;
+}
+
+.separator {
+    width: 1px;
 }
 
 .add-item,

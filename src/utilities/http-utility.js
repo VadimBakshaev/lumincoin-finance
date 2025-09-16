@@ -19,7 +19,7 @@ async function request(url, data) {
     };
     result.response = await response.json();
     if (response.status < 200 || response.status >= 300) {
-        // throw new Error(response.message);
+        //to do
         console.log(response);
     }
     return result;

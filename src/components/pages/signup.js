@@ -19,11 +19,11 @@ export class Signup {
     if (result.status === 400) {
       if (result.response.validation) {
         result.response.validation.forEach((item) => {
-          ValidateUtility.setStatus([...this.fieldEls].find((element) => element.id === item.key, false));
+          ValidateUtility.setStatus([...this.fieldEls].find((element) => element.id === item.key));
         });
         return;
       } else {
-        ValidateUtility.setStatus(this.emailMessageEl.previousElementSibling, false);
+        ValidateUtility.setStatus(this.emailMessageEl.previousElementSibling);
         this.emailMessageEl.innerText = 'Пользователь с таким E-Mail уже зарегистрирован';
         return;
       }

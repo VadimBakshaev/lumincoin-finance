@@ -1,4 +1,5 @@
 export class ValidateUtility {
+  
   static validateField(field) {
     const value = field.value;
     const rule = field.dataset.rule;
@@ -48,7 +49,7 @@ export class ValidateUtility {
 
   static serializeForm(form) {
     const data = {};
-    if (ValidateUtility.validateForm(form)) {
+    if (this.validateForm(form)) {
       form.forEach((element) => {
         if (element.id === 'rememberMe') {
           data[element.id] = element.checked
