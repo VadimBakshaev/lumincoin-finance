@@ -11,6 +11,7 @@ import { Expenses } from "../components/pages/expenses";
 import { IncExp } from "../components/pages/inc-exp";
 import { Income } from "../components/pages/income";
 import { Login } from "../components/pages/login";
+import { Logout } from "../components/pages/logout";
 import { Main } from "../components/pages/main";
 import { Signup } from "../components/pages/signup";
 
@@ -18,16 +19,11 @@ export class Router {
   constructor() {
     this.pageTitleEl = document.getElementById("title");
     this.contentEl = document.getElementById("content");
-    // функция переходя на другие страницы
     this.openRoute = async (url) => {
-      // сохраняем предыдущий роут
       const currentRoute = location.pathname;
-      // меняем адрес
       history.pushState({}, "", url);
-      // вызываем функцию обработки текущего адреса, и передаем предыдущий
       await this.activateRoute(null, currentRoute);
     };
-    // массив объектов с настройками страниц
     this.routes = [
       {
         route: "/",
@@ -46,7 +42,7 @@ export class Router {
         layout: false,
         depends: null,
         load: () => {
-          new Login();
+          new Login(this.openRoute);
         },
       },
       {
@@ -56,7 +52,7 @@ export class Router {
         layout: false,
         depends: null,
         load: () => {
-          new Signup();
+          new Signup(this.openRoute);
         },
       },
       {
@@ -169,96 +165,79 @@ export class Router {
           new EditExpense();
         },
       },
+      {
+        route: "/logout",
+        load: () => {
+          new Logout(this.openRoute);
+        },
+      },
     ];
     this.init();
   }
 
-  // функция установки глобальных обработчиков событий: загрузки, перехода и клика
   init() {
     window.addEventListener("DOMContentLoaded", this.activateRoute.bind(this));
     window.addEventListener("popstate", this.activateRoute.bind(this));
     document.addEventListener("click", this.clickHandler.bind(this));
   }
 
-  // функция обработчик события клика
   async clickHandler(e) {
     let element = null;
-    // если клик по ссылке, сохраняем элемент в переменную
     if (e.target.nodeName === "A") {
       element = e.target;
     } else if (e.target.parentNode.nodeName === "A") {
       element = e.target.parentNode;
     }
-    // если элемент в переменной есть и у него есть атрибут href
-    if (element && !element.href) {
+    if (element && element.href) {
       e.preventDefault();
-      // берем url из ссылки (какой вариант лучше?)
-      //const url = new URL(element.href).pathname;
-      const url = element.href.replace(location.origin, "");
+      const url = new URL(element.href).pathname;
 
-      // если адрес пустой или он совпадает с текущим
       if (!url || url.replace("#", "") === location.pathname) {
         return;
       }
-      // вызываем функцию перехода на другую страницу
       await this.openRoute(url);
     }
   }
 
-  // функция активации текущей страниы
   async activateRoute(e, oldRoute = null) {
     let prevPage = null;
-    // если передана предыдущая страница, находим ее и сохраняем в переменную
     if (oldRoute) {
       prevPage = this.routes.find((item) => oldRoute === item.route);
     }
-    // находим в массиве настройки текущей страницы
     const urlRoute = window.location.pathname;
     const newRoute = this.routes.find((item) => urlRoute === item.route);
-    // если страница найдена
     if (newRoute) {
-      // устанавливаем заголовок
       this.pageTitleEl.innerText = newRoute.title;
-      // если применятся лэйаут
       if (newRoute.layout) {
-        // и если лэйаут применялся на пердыдущей странице
         if (prevPage && prevPage.layout) {
-          // вставляем содержимое страницы в лэйаут
           await this.#constructTemplate(
             document.getElementById("main-content"),
             newRoute.filePath
           );
-          // проверяем есть ли зависимости у текущей страницы, и устанавливаем активный пункт меню
           if (newRoute.depends) {
             this.layout.setActive(newRoute.depends);
           } else {
             this.layout.setActive(newRoute.route);
           }
-        } else { // если предыдущей страницы нет, или на ней не использовался лэйаут
-          // загружаем лэйаут
+        } else {
           await this.#constructTemplate(this.contentEl, newRoute.layout);
-          // загружаем содержимое страницы
           await this.#constructTemplate(
             document.getElementById("main-content"),
             newRoute.filePath
           );
-          // активируем лэйаут
-          this.layout = new Layout();
-          // устанавливаем активный пункт меню
+          this.layout = new Layout(this.openRoute);
           this.layout.setActive(newRoute.route);
         }
-      } else { // если лэйаут не используется, загружаем содержимое страницы        
+      } else {
         await this.#constructTemplate(this.contentEl, newRoute.filePath);
       }
       newRoute.load();
-    } else { // если страница не найдена, загружаем главную
+    } else {
       history.pushState({}, "", "/");
       await this.activateRoute();
     }
   }
 
-  // функция для вставки элементов страницы. 
-  // element - куда; template - что
   async #constructTemplate(element, template) {
     element.innerHTML = await fetch(template).then((response) =>
       response.text()

@@ -4,24 +4,31 @@
     </div>
     <h2 class="text-medium fs-1 mb-4">Вход</h2>
     <form class="d-flex flex-column w-100 form-container">
-        <div class="mb-2">            
+        <div class="mb-2">
             <div class="input-group">
-                <div class="input-group-text"><i class="bi bi-envelope-open" style="font-weight: bold; color: #6C757D;"></i></div>
-                <input type="email" class="form-control" id="email" placeholder="Электронная почта">
+                <div class="input-group-text"><i class="bi bi-envelope-open"
+                        style="font-weight: bold; color: #6C757D;"></i></div>
+                <input type="email" class="form-control" id="email" placeholder="Электронная почта"> 
+                <div class="invalid-feedback fs-8">
+                    Такой пользователь не найден
+                </div>               
             </div>
         </div>
         <div class="mb-2">
             <div class="input-group">
                 <div class="input-group-text"><i class="bi bi-lock" style="color: #6C757D;"></i></div>
                 <input type="password" class="form-control " id="password" placeholder="Пароль">
+                <div class="invalid-feedback fs-8">
+                    Не верный пароль
+                </div>                
             </div>
         </div>
         <div class="d-flex mb-4">
-            <input class="me-2" type="checkbox" id="remember">
-            <label class="fs-8" for="remember">Запомнить меня</label>
+            <input class="me-2" type="checkbox" id="rememberMe">
+            <label class="fs-8" for="rememberMe">Запомнить меня</label>
         </div>
-        
-        <button class="btn btn-primary mb-2" type="button">Войти</button>
+
+        <button class="btn btn-primary mb-2" id="submit" type="button">Войти</button>
         <p class="fs-8">Ещё нет аккаунта?<a href="/signup" class="ms-2">Пройдите регистрацию</a></p>
     </form>
 </main>

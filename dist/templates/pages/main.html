@@ -1,5 +1,5 @@
 <div class="p-4 p-md-8">
-    <h1 class="fs-1 text-medium mb-6 mt-3">Главная</h1>    
+    <h1 class="fs-1 text-medium mb-6 mt-3">Главная</h1>
     <div class="d-flex flex-wrap my-6 gap-2 gap-lg-3_5 text-medium">
         <button class="btn btn-outline-secondary">Сегодня</button>
         <button class="btn btn-outline-secondary">Неделя</button>
@@ -14,7 +14,21 @@
             <button class="btn btn-link text-secondary">Дата</button>
         </div>
     </div>
-    <div>
-        <canvas id="pie-chart" width="800" height="450"></canvas>
+
+    <div class="d-flex flex-wrap gap-1">
+        <div class="col-12 col-lg-5">
+            <h3 class="text-medium text-center fs-3">Доходы</h3>
+            <div>
+                <canvas id="chart-income"></canvas>
+            </div>
+        </div>
+        <div class="d-none bg-dark-subtle d-lg-block separator"></div>
+        <div class="col-12 col-lg-5">
+            <h3 class="text-medium text-center fs-3">Расходы</h3>
+            <div>
+                <canvas id="chart-expenses"></canvas>
+            </div>
+        </div>
     </div>
+
 </div>
