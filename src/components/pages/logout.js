@@ -14,7 +14,7 @@ export class Logout {
 
     async logout() {
         console.log(this.refreshToken);
-        await request('/logout', { refreshToken: this.refreshToken });
+        await request('/logout', 'POST', false, { refreshToken: this.refreshToken });
         AuthUtility.removeUser();
         this.openRoute('/login');
     };

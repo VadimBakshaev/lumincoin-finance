@@ -16,7 +16,7 @@ export class Login {
   async login() {
     const data = ValidateUtility.serializeForm(this.fieldEls);
     if (!data) return;
-    const result = await request('/login', data);
+    const result = await request('/login', 'POST', false, data);
     if (result.status === 400 && result.response.validation) {
       result.response.validation.forEach((item) => {
         ValidateUtility.setStatus([...this.fieldEls].find((element) => element.id === item.key))

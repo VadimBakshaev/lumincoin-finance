@@ -3,12 +3,12 @@
     <a href="/create-income" class="btn btn-success fs-7 me-2">Создать доход</a>
     <a href="/create-expense" class="btn btn-danger fs-7">Создать расход</a>
     <div class="d-flex flex-wrap my-6 gap-2 gap-lg-3_5 text-medium">
-        <button class="btn btn-outline-secondary">Сегодня</button>
-        <button class="btn btn-outline-secondary">Неделя</button>
-        <button class="btn btn-outline-secondary">Месяц</button>
-        <button class="btn btn-outline-secondary">Год</button>
-        <button class="btn btn-outline-secondary">Все</button>
-        <button class="btn btn-outline-secondary">Интервал</button>
+        <button class="btn btn-outline-secondary filter active" id="day">Сегодня</button>
+        <button class="btn btn-outline-secondary filter" id="week">Неделя</button>
+        <button class="btn btn-outline-secondary filter" id="month">Месяц</button>
+        <button class="btn btn-outline-secondary filter" id="year">Год</button>
+        <button class="btn btn-outline-secondary filter" id="all">Все</button>
+        <button class="btn btn-outline-secondary filter" id="interval">Интервал</button>
         <div>
             <span class="">c</span>
             <button class="btn btn-link text-secondary">Дата</button>
@@ -29,8 +29,8 @@
                     <th></th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
+            <tbody id="tableContent">
+                <!-- <tr>
                     <th scope="row">1</th>
                     <td class="text-success">доход</td>
                     <td>зарплата</td>
@@ -53,7 +53,7 @@
                         <a href="#!" class="text-secondary" data-bs-toggle="modal" data-bs-target="#modalDialog"><i class="bi bi-trash"></i></a>
                         <a href="/edit-expense" class="text-secondary"><i class="bi bi-pencil"></i></a>
                     </td>
-                </tr>
+                </tr> -->
             </tbody>
         </table>
     </div>

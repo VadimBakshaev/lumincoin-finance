@@ -1,19 +1,17 @@
 import { Layout } from "../components/layout";
-import { AddCategoryExpenses } from "../components/pages/add-category-expenses";
-import { AddCategoryIncome } from "../components/pages/add-category-income";
+import { AddCategory } from "../components/pages/add-category";
 import { CreateExpense } from "../components/pages/create-expense";
 import { CreateIncome } from "../components/pages/create-income";
-import { EditCategoryExpenses } from "../components/pages/edit-category-expenses";
-import { EditCategoryIncome } from "../components/pages/edit-category-income";
+import { EditCategory } from "../components/pages/edit-category";
 import { EditExpense } from "../components/pages/edit-expense";
 import { EditIncome } from "../components/pages/edit-income";
-import { Expenses } from "../components/pages/expenses";
 import { IncExp } from "../components/pages/inc-exp";
-import { Income } from "../components/pages/income";
+import { Category } from "../components/pages/category";
 import { Login } from "../components/pages/login";
 import { Logout } from "../components/pages/logout";
 import { Main } from "../components/pages/main";
 import { Signup } from "../components/pages/signup";
+import { AuthUtility } from "../utilities/auth-utility";
 
 export class Router {
   constructor() {
@@ -68,61 +66,61 @@ export class Router {
       {
         route: "/income",
         title: "Income",
-        filePath: "/templates/pages/income.html",
+        filePath: "/templates/pages/categories.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Income();
+          new Category(this.openRoute, 'income');
         },
       },
       {
         route: "/add-category-income",
         title: "Add Category Income",
-        filePath: "/templates/pages/add-category-income.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new AddCategoryIncome();
+          new AddCategory(this.openRoute, 'income');
         },
       },
       {
         route: "/edit-category-income",
         title: "Edit Category Income",
-        filePath: "/templates/pages/edit-category-income.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new EditCategoryIncome();
+          new EditCategory(this.openRoute, 'income');
         },
       },
       {
-        route: "/expenses",
+        route: "/expense",
         title: "Expenses",
-        filePath: "/templates/pages/expenses.html",
+        filePath: "/templates/pages/categories.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Expenses();
+          new Category(this.openRoute, 'expense');
         },
       },
       {
-        route: "/add-category-expenses",
+        route: "/add-category-expense",
         title: "Add Category Expenses",
-        filePath: "/templates/pages/add-category-expenses.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
-        depends: "/expenses",
+        depends: "/expense",
         load: () => {
-          new AddCategoryExpenses();
+          new AddCategory(this.openRoute, 'expense');
         },
       },
       {
-        route: "/edit-category-expenses",
+        route: "/edit-category-expense",
         title: "Edit Category Expenses",
-        filePath: "/templates/pages/edit-category-expenses.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
-        depends: "/expenses",
+        depends: "/expense",
         load: () => {
-          new EditCategoryExpenses();
+          new EditCategory(this.openRoute, 'expense');
         },
       },
       {
@@ -209,6 +207,7 @@ export class Router {
     if (newRoute) {
       this.pageTitleEl.innerText = newRoute.title;
       if (newRoute.layout) {
+        if (!AuthUtility.checkAuthorization()) this.openRoute('/logout');
         if (prevPage && prevPage.layout) {
           await this.#constructTemplate(
             document.getElementById("main-content"),

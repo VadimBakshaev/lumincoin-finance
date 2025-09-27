@@ -34,7 +34,7 @@ body {
     color: #6C757D;
 }
 
-.bi-chevron-left {
+.bi-chevron-right {
 
     &::before {
         transition: transform .35s ease;
@@ -42,9 +42,9 @@ body {
 }
 
 .btn-toggle[aria-expanded="true"] {
-    .bi-chevron-left {
+    .bi-chevron-right {
         &::before {
-            transform: rotate(-90deg);
+            transform: rotate(90deg);
         }
     }
 }

@@ -3,7 +3,6 @@ import { AuthUtility } from "../utilities/auth-utility";
 export class Layout {
   constructor(openRoute) {
     this.openRoute = openRoute;
-    this.checkAuthorization();
     this.navBtnEl = document.getElementById("navBtn");
     this.overlayEl = document.getElementById("overlay");
     this.navBarEl = document.getElementById("navBar");
@@ -12,12 +11,13 @@ export class Layout {
     this.selectAreaEl = document.getElementById("category-collapse");
     this.userEl = document.getElementById("user");
     this.userDialogEl = document.getElementById("userDialog");
+    this.showUser();
     this.initListener();
   }
-  checkAuthorization() {
-    if (AuthUtility.getInfo('accessToken')) {
-      this.user = AuthUtility.getInfo('user');
-      document.getElementById('userName').innerText = `${this.user.name} ${this.user.lastName}`;
+  showUser() {
+    const user = AuthUtility.getInfo('user');
+    if (user) {
+      document.getElementById('userName').innerText = `${user.name} ${user.lastName}`;
     } else {
       this.openRoute('/logout');
     }
@@ -48,7 +48,7 @@ export class Layout {
     this.navLinkEl.forEach((item) => {
       item.classList.remove("active");
       if (item.getAttribute("href") === route) {
-        if (route === "/income" || route === "/expenses") {
+        if (route === "/income" || route === "/expense") {
           this.selectBtnEl.classList.add("active");
           this.selectBtnEl.ariaExpanded = true;
           this.selectAreaEl.classList.add("show");
