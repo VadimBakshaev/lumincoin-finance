@@ -112,3 +112,23 @@ body {
         width: 100%;
     }
 }
+.date-picker-box{
+    width: 265px;
+}
+.date-picker{
+    border-collapse: separate;
+    border-spacing: 1em;
+    text-align: center;
+    td.current{
+        background-color: darkgray;
+    }
+    td.select{
+        color: white;
+        background-color: black;
+    }
+    td:hover{
+        cursor: pointer;        
+        color: white;
+        background-color: #6C757D;
+    }
+}

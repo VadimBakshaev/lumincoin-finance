@@ -5,7 +5,7 @@ export class AddCategory {
     constructor(openRoute, category) {
         this.openRoute = openRoute;
         this.category = category;
-        this.titleEl = document.getElementById('title');
+        this.titleEl = document.getElementById('titlePage');
         this.btnAddEl = document.getElementById('btnAction');
         this.btnCancelEl = document.getElementById('btnCancel');
         this.formEls = document.querySelectorAll('.form-control');

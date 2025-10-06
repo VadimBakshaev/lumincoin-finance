@@ -1,17 +1,15 @@
 import { Layout } from "../components/layout";
 import { AddCategory } from "../components/pages/add-category";
-import { CreateExpense } from "../components/pages/create-expense";
-import { CreateIncome } from "../components/pages/create-income";
+import { CreateOperation } from "../components/pages/create-operation";
 import { EditCategory } from "../components/pages/edit-category";
-import { EditExpense } from "../components/pages/edit-expense";
-import { EditIncome } from "../components/pages/edit-income";
-import { IncExp } from "../components/pages/inc-exp";
+import { EditOperation } from "../components/pages/edit-operation";
 import { Category } from "../components/pages/category";
 import { Login } from "../components/pages/login";
 import { Logout } from "../components/pages/logout";
 import { Main } from "../components/pages/main";
 import { Signup } from "../components/pages/signup";
 import { AuthUtility } from "../utilities/auth-utility";
+import { Operations } from "../components/pages/operations";
 
 export class Router {
   constructor() {
@@ -54,13 +52,13 @@ export class Router {
         },
       },
       {
-        route: "/inc-exp",
+        route: "/operations",
         title: "Income & Expenses",
-        filePath: "/templates/pages/inc-exp.html",
+        filePath: "/templates/pages/operations.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new IncExp();
+          new Operations(this.openRoute);
         },
       },
       {
@@ -126,41 +124,41 @@ export class Router {
       {
         route: "/create-expense",
         title: "Create Expense",
-        filePath: "/templates/pages/create-expense.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new CreateExpense();
+          new CreateOperation(this.openRoute, 'expense');
         },
       },
       {
         route: "/create-income",
         title: "Create Income",
-        filePath: "/templates/pages/create-income.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new CreateIncome();
+          new CreateOperation(this.openRoute, 'income');
         },
       },
       {
         route: "/edit-income",
         title: "Edit Income",
-        filePath: "/templates/pages/edit-income.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new EditIncome();
+          new EditOperation(this.openRoute, 'income');
         },
       },
       {
         route: "/edit-expense",
         title: "Edit Expense",
-        filePath: "/templates/pages/edit-expense.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new EditExpense();
+          new EditOperation(this.openRoute, 'expense');
         },
       },
       {
@@ -188,12 +186,13 @@ export class Router {
     }
     if (element && element.href) {
       e.preventDefault();
+      const param = new URL(element.href).search;
       const url = new URL(element.href).pathname;
 
       if (!url || url.replace("#", "") === location.pathname) {
         return;
       }
-      await this.openRoute(url);
+      await this.openRoute(url + param);
     }
   }
 

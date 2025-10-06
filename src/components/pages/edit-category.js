@@ -5,7 +5,7 @@ export class EditCategory {
     constructor(openRoute, category) {
         this.openRoute = openRoute;
         this.category = category;
-        this.titleEl = document.getElementById('title');
+        this.titleEl = document.getElementById('titlePage');
         this.btnEditEl = document.getElementById('btnAction');
         this.btnCancelEl = document.getElementById('btnCancel');
         this.formEls = document.querySelectorAll('.form-control');

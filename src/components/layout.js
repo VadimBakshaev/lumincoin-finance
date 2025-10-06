@@ -1,4 +1,5 @@
 import { AuthUtility } from "../utilities/auth-utility";
+import request from "../utilities/http-utility";
 
 export class Layout {
   constructor(openRoute) {
@@ -9,10 +10,12 @@ export class Layout {
     this.navLinkEl = document.querySelectorAll(".nav-link");
     this.selectBtnEl = document.querySelector(".nav-link.btn");
     this.selectAreaEl = document.getElementById("category-collapse");
+    this.balanceEl = document.getElementById('balance');
     this.userEl = document.getElementById("user");
     this.userDialogEl = document.getElementById("userDialog");
     this.showUser();
     this.initListener();
+    this.getBalance();
   }
   showUser() {
     const user = AuthUtility.getInfo('user');
@@ -27,6 +30,18 @@ export class Layout {
     this.navBarEl.addEventListener("click", this.closeMenu.bind(this));
     this.overlayEl.addEventListener("click", this.closeMenu.bind(this));
     this.userEl.addEventListener("click", this.openLogout.bind(this));
+    this.balanceEl.addEventListener('keypress', (e) => {
+      if (/^\D$/.test(e.key)) e.preventDefault();
+    });
+    this.balanceEl.addEventListener('focus', (e) => {
+      this.balanceEl.value = parseInt(this.balanceEl.value);
+    });
+    this.balanceEl.addEventListener('change', async () => {
+      const response = await request('/balance', 'PUT', true, { "newBalance": parseInt(this.balanceEl.value) });
+      if (response && response.status === 200) {
+        this.getBalance();
+      }
+    });
   }
   openMenu() {
     this.navBtnEl.classList.add("close");
@@ -60,6 +75,12 @@ export class Layout {
         item.classList.add("active");
       }
     });
+  }
+  async getBalance() {
+    const response = await request('/balance');
+    if (response && response.status === 200) {
+      this.balanceEl.value = response.response.balance + '$';
+    }
   }
   openLogout(e) {
     e.preventDefault();

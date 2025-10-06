@@ -31,14 +31,11 @@ export class Category {
     createCard(id, title) {
         return `<div class="p-3 p-md-3_5 text-medium border rounded" id="${id}">
                   <h3 class="fs-3 ">${title}</h3>
-                  <a class="btn btn-primary fs-7 edit-btn">Редактировать</a>
+                  <a class="btn btn-primary fs-7 edit-btn" href="/edit-category-${this.category}?id=${id}">Редактировать</a>
                   <a class="btn btn-danger fs-7 del-btn" data-bs-toggle="modal" data-bs-target="#modalDialog">Удалить</a>
                 </div>`
     }
     setListener() {
-        document.querySelectorAll('.edit-btn').forEach(elem => elem.addEventListener('click', (e) => {
-            this.openRoute('/edit-category-' + this.category + '?id=' + e.target.parentNode.id);
-        }));
         document.querySelectorAll('.del-btn').forEach(elem => elem.addEventListener('click', (e) => {
             this.deleteBtnEl.onclick = async () => {
                 await request('/categories/' + this.category + '/' + e.target.parentNode.id, 'DELETE');
