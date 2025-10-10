@@ -1,32 +1,31 @@
 import request from "../../utilities/http-utility";
 import { ValidateUtility } from "../../utilities/validate-utility";
+import { Category } from "./category";
 
-export class AddCategory {
-    constructor(openRoute, category) {
-        this.openRoute = openRoute;
-        this.category = category;
+export class AddCategory extends Category {
+    constructor(openRoute, type) {
+        super(openRoute, type)
         this.titleEl = document.getElementById('titlePage');
-        this.btnAddEl = document.getElementById('btnAction');
+        this.btnActionEl = document.getElementById('btnAction');
         this.btnCancelEl = document.getElementById('btnCancel');
         this.formEls = document.querySelectorAll('.form-control');
-        this.init();
     }
     init() {
-        if (this.category === 'income') {
+        if (this.type === 'income') {
             this.titleEl.innerText = 'Создание категории доходов';
             this.btnCancelEl.href = '/income';
         }
-        if (this.category === 'expense') {
+        if (this.type === 'expense') {
             this.titleEl.innerText = 'Создание категории расходов';
             this.btnCancelEl.href = '/expense';
         }
-        this.btnAddEl.innerText = 'Создать';
-        this.btnAddEl.addEventListener('click', this.addCategory.bind(this));
+        this.btnActionEl.innerText = 'Создать';
+        this.btnActionEl.addEventListener('click', this.addCategory.bind(this));
     }
     async addCategory() {
         const data = ValidateUtility.serializeForm(this.formEls);
         if (!data) return;
-        await request('/categories/' + this.category, 'POST', true, data);
-        this.openRoute('/' + this.category);
+        await request('/categories/' + this.type, 'POST', true, data);
+        this.openRoute('/' + this.type);
     }
 }

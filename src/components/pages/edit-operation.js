@@ -1,21 +1,14 @@
 import request from "../../utilities/http-utility";
 import { ValidateUtility } from "../../utilities/validate-utility";
 import { Layout } from "../layout";
+import { CreateOperation } from "./create-operation";
 
-export class EditOperation {
+export class EditOperation extends CreateOperation {
     constructor(openRoute, type) {
-        this.openRoute = openRoute;
-        this.type = type;
-        this.titleEl = document.getElementById('titlePage');
-        this.actionBtnEl = document.getElementById('actionBtn');
-        this.formEls = document.querySelectorAll('.form-control');
-        this.selectCategoryEl = document.getElementById('category_id');
-        this.selectTypeEl = document.getElementById('type');
-        this.categories = null;
+        super(openRoute, type)
         this.id = new URL(location.href).searchParams.get('id');
-        this.init();
     }
-    init() {
+    async init() {
         if (this.type === 'income') {
             this.titleEl.innerText = 'Редактирование дохода';
         }
@@ -24,9 +17,9 @@ export class EditOperation {
         }
         this.actionBtnEl.innerText = 'Сохранить';
         this.selectTypeEl.setAttribute('disabled', 'disabled');
-        this.getCategories();
-        this.getData();
-        this.actionBtnEl.addEventListener('click', this.saveData.bind(this));        
+        await this.getCategories();
+        await this.getData();
+        this.actionBtnEl.addEventListener('click', this.saveData.bind(this));
     }
     setData() {
         // целесообразно ли здесь использовать цикл с поиском? или проще просто в ручную выставить все значения? в плане оптимизации...

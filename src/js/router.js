@@ -24,11 +24,11 @@ export class Router {
       {
         route: "/",
         title: "Main",
-        filePath: "/templates/pages/main.html",
+        filePath: "/templates/pages/filter.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Main();
+          new Main(this.openRoute);
         },
       },
       {
@@ -54,7 +54,7 @@ export class Router {
       {
         route: "/operations",
         title: "Income & Expenses",
-        filePath: "/templates/pages/operations.html",
+        filePath: "/templates/pages/filter.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
@@ -68,7 +68,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Category(this.openRoute, 'income');
+          const income = new Category(this.openRoute, 'income');
+          income.getData();
         },
       },
       {
@@ -78,7 +79,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new AddCategory(this.openRoute, 'income');
+          const addCategory = new AddCategory(this.openRoute, 'income');
+          addCategory.init();
         },
       },
       {
@@ -88,7 +90,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new EditCategory(this.openRoute, 'income');
+          const editCategory = new EditCategory(this.openRoute, 'income');
+          editCategory.init();
         },
       },
       {
@@ -98,7 +101,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Category(this.openRoute, 'expense');
+          const expense = new Category(this.openRoute, 'expense');
+          expense.getData();
         },
       },
       {
@@ -108,7 +112,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/expense",
         load: () => {
-          new AddCategory(this.openRoute, 'expense');
+          const addCategory = new AddCategory(this.openRoute, 'expense');
+          addCategory.init();
         },
       },
       {
@@ -118,7 +123,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/expense",
         load: () => {
-          new EditCategory(this.openRoute, 'expense');
+          const editCategory = new EditCategory(this.openRoute, 'expense');
+          editCategory.init();
         },
       },
       {
@@ -128,7 +134,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/operations",
         load: () => {
-          new CreateOperation(this.openRoute, 'expense');
+          const createOperation = new CreateOperation(this.openRoute, 'expense');
+          createOperation.init();
         },
       },
       {
@@ -138,7 +145,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/operations",
         load: () => {
-          new CreateOperation(this.openRoute, 'income');
+          const createOperation = new CreateOperation(this.openRoute, 'income');
+          createOperation.init();
         },
       },
       {
@@ -148,7 +156,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/operations",
         load: () => {
-          new EditOperation(this.openRoute, 'income');
+          const editOperation = new EditOperation(this.openRoute, 'income');
+          editOperation.init();
         },
       },
       {
@@ -158,7 +167,8 @@ export class Router {
         layout: "/templates/layout.html",
         depends: "/operations",
         load: () => {
-          new EditOperation(this.openRoute, 'expense');
+          const editOperation = new EditOperation(this.openRoute, 'expense');
+          editOperation.init();
         },
       },
       {
