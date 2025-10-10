@@ -11,8 +11,7 @@ export class CreateOperation {
         this.formEls = document.querySelectorAll('.form-control');
         this.selectCategoryEl = document.getElementById('category_id');
         this.selectTypeEl = document.getElementById('type');
-        this.categories = null;
-        this.init();
+        this.categories = null;        
     }
     async init() {
         if (this.type === 'income') {
