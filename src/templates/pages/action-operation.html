@@ -1,6 +1,6 @@
 <div class="p-4 p-md-8">
     <h1 class="fs-1 text-medium mb-6 mt-3" id="titlePage"></h1>
-    <form class="form-container mb-3_5">
+    <form class="form-container">
         <select type="text" class="form-control mb-2" placeholder="Тип..." id="type">
             <option value="expense">расход</option>
             <option value="income">доход</option>
@@ -23,7 +23,9 @@
         <div class="invalid-feedback fs-8">
             Ведите комментарий к операции
         </div>
+        <div class="mt-3_5">
+            <button class="btn btn-success fs-7 me-2" type="submit" href="#!" id="actionBtn"></button>
+            <a class="btn btn-danger fs-7" href="/operations">Отмена</a>
+        </div>
     </form>
-    <a class="btn btn-success fs-7 me-2" href="#!" id="actionBtn"></a>
-    <a class="btn btn-danger fs-7" href="/operations">Отмена</a>
 </div>

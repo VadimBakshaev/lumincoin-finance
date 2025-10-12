@@ -27,7 +27,12 @@ export class Filter {
         this.toDayBtnEl.addEventListener('click', this.intervalBtnHandler.bind(this));
         this.setFilter();
     }
+    /**
+     * Метод устанавливает управляющую функцию, которая будет выполнена при обновлении данных
+     * @param {Function} func - управляющая функция
+     */
     setEmitter(func) { this.emitter = func }
+
     intervalBtnHandler(e) {
         if (e.target.ariaExpanded === 'true') {
             this.showDatePicker(e.target);
@@ -126,8 +131,16 @@ export class Filter {
             this.createDatePicker(counterM(1), counterY())
         }
         this.tableMonthEl.onclick = (e) => {
-            this.selectedDay.setDate(e.target.textContent);
-            btnEl.dispatchEvent(new Event('click'))
+            if (e.target.classList.contains('before')) {
+                this.selectedDay.setMonth(this.selectedDay.getMonth() - 1);
+                this.selectedDay.setDate(e.target.textContent);
+            } else if (e.target.classList.contains('after')) {
+                this.selectedDay.setMonth(this.selectedDay.getMonth() + 1);
+                this.selectedDay.setDate(e.target.textContent);
+            } else {
+                this.selectedDay.setDate(e.target.textContent);
+            }
+            btnEl.dispatchEvent(new Event('click'));
         }
         if (btnEl.id === 'fromDay' && this.fromDay) {
             counterY(this.fromDay.getFullYear() - counterY());
@@ -163,6 +176,11 @@ export class Filter {
         this.tableMonthEl.innerHTML = this.showMonth(firstOfMonth, lastOfMonth, toDay, day);
     }
     showMonth(firstOfMonth, lastOfMonth, toDay, selectedDay) {
+        const beforeMonth = new Date();
+        beforeMonth.setFullYear(firstOfMonth.getFullYear());
+        beforeMonth.setMonth(firstOfMonth.getMonth());
+        beforeMonth.setDate(firstOfMonth.getDate() - 1);
+        
         let table = `<thead>
                         <tr>
                             <th>Пн</th>
@@ -179,7 +197,7 @@ export class Filter {
         let dow = firstOfMonth.getDay();
         if (dow === 0) dow = 7;
         for (let i = 1; i < dow; i++) {
-            table += `<td></td>`;
+            table += `<td class="before">${beforeMonth.getDate() - (dow - 1) + i}</td>`;
         }
         for (let day = 1; day <= lastOfMonth.getDate(); day++) {
             if (dow === 8) {
@@ -197,6 +215,9 @@ export class Filter {
                 default:
                     table += `<td>${day}</td>`;
             }
+        }
+        for (let i = dow; i < 8; i++) {
+            table += `<td class="after">${1 + i - dow}</td>`;
         }
         table += `</tr></tbody>`;
         return table;

@@ -17,6 +17,7 @@ export class EditCategory extends AddCategory {
             this.btnCancelEl.href = '/expense';
         }
         this.btnActionEl.innerText = 'Сохранить';
+        document.querySelector('.form-container').addEventListener('submit',this.editCategory.bind(this));
         this.btnActionEl.addEventListener('click', this.editCategory.bind(this));
         this.getData();
     }
@@ -27,7 +28,8 @@ export class EditCategory extends AddCategory {
             this.title = data.response.title;
         }
     }
-    async editCategory() {
+    async editCategory(e) {
+        e.preventDefault();
         const data = ValidateUtility.serializeForm(this.formEls);
         if (!data || data.title === this.title) return;
         await request('/categories/' + this.type + '/' + this.id, 'PUT', true, data);

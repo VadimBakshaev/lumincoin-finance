@@ -27,8 +27,7 @@ async function request(url, method = 'GET', auth = true, data = null) {
                 return request(url, method, auth, data);
             }
         }
-        AuthUtility.removeUser();
-        return null;
+        AuthUtility.removeUser();        
     }
     result.status = response.status;
     result.response = await response.json();

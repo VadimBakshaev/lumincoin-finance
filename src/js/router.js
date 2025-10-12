@@ -216,7 +216,10 @@ export class Router {
     if (newRoute) {
       this.pageTitleEl.innerText = newRoute.title;
       if (newRoute.layout) {
-        if (!AuthUtility.checkAuthorization()) this.openRoute('/logout');
+        if (!AuthUtility.checkAuthorization()) {
+          this.openRoute('/logout');
+          return;
+        };
         if (prevPage && prevPage.layout) {
           await this.#constructTemplate(
             document.getElementById("main-content"),

@@ -30,7 +30,7 @@ body {
     max-width: 25rem;
 }
 
-.input-group-text{
+.input-group-text {
     color: #6C757D;
 }
 
@@ -112,22 +112,32 @@ body {
         width: 100%;
     }
 }
-.date-picker-box{
+
+.date-picker-box {
     width: 265px;
 }
-.date-picker{
+
+.date-picker {
     border-collapse: separate;
     border-spacing: 1em;
     text-align: center;
-    td.current{
+
+    td.current {
         background-color: darkgray;
     }
-    td.select{
+
+    td.select {
         color: white;
         background-color: black;
     }
-    td:hover{
-        cursor: pointer;        
+
+    td.after,
+    td.before {
+        color: LightGray;
+    }
+
+    td:hover {
+        cursor: pointer;
         color: white;
         background-color: #6C757D;
     }

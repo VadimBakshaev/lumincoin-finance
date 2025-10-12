@@ -19,10 +19,10 @@ export class EditOperation extends CreateOperation {
         this.selectTypeEl.setAttribute('disabled', 'disabled');
         await this.getCategories();
         await this.getData();
+        document.querySelector('.form-container').addEventListener('submit', this.saveData.bind(this));
         this.actionBtnEl.addEventListener('click', this.saveData.bind(this));
     }
     setData() {
-        // целесообразно ли здесь использовать цикл с поиском? или проще просто в ручную выставить все значения? в плане оптимизации...
         for (let key in this.data) {
             const currentKey = [...this.formEls].find(element => element.id === key);
             if (currentKey) {
@@ -52,7 +52,8 @@ export class EditOperation extends CreateOperation {
             this.setData();
         }
     }
-    async saveData() {
+    async saveData(e) {
+        e.preventDefault();
         const data = ValidateUtility.serializeForm(this.formEls);
         if (data && this.compareData(data)) {
             const response = await request('/operations/' + this.id, 'PUT', true, data);

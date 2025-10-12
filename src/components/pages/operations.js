@@ -32,13 +32,12 @@ export class Operations extends Filter {
         }
     }
     createTableRow(num, id, type, category, amount, date, comment) {
-        const dateLocal = new Date(date).toLocaleDateString();
         return `<tr>
                     <th scope="row">${num}</th>
                     <td class="${type === 'income' ? 'text-success' : 'text-danger'}">${type === 'income' ? 'доход' : 'расход'}</td>
-                    <td>${category}</td>
+                    <td>${category ? category : 'Без категории'}</td>
                     <td>${amount}$</td>
-                    <td>${dateLocal}</td>
+                    <td>${new Date(date).toLocaleDateString()}</td>
                     <td>${comment}</td>
                     <td>
                         <a href="#!" class="text-secondary del-btn" data-bs-toggle="modal" data-bs-target="#modalDialog" id="${id}"><i class="bi bi-trash"></i></a>
@@ -48,21 +47,21 @@ export class Operations extends Filter {
     }
     createTableHead() {
         return `<div class="box border-top">
-        <table class="table text-center">
-            <thead class="text-nowrap">
-                <tr>
-                    <th scope="col">№ операции</th>
-                    <th scope="col">Тип</th>
-                    <th scope="col">Категория</th>
-                    <th scope="col">Сумма</th>
-                    <th scope="col">Дата</th>
-                    <th scope="col">Комментарий</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody id="tableContent"> 
-            </tbody>
-        </table>
-    </div>`
+            <table class="table text-center">
+                <thead class="text-nowrap">
+                    <tr>
+                        <th scope="col">№ операции</th>
+                        <th scope="col">Тип</th>
+                        <th scope="col">Категория</th>
+                        <th scope="col">Сумма</th>
+                        <th scope="col">Дата</th>
+                        <th scope="col">Комментарий</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tableContent"> 
+                </tbody>
+            </table>
+        </div>`
     }
 }

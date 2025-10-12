@@ -22,6 +22,7 @@ export class CreateOperation {
         }
         this.actionBtnEl.innerText = 'Создать';
         this.actionBtnEl.addEventListener('click', this.sendData.bind(this));
+        document.querySelector('.form-container').addEventListener('submit',this.sendData.bind(this));
         await this.getCategories();
         this.setSelect();
     }
@@ -37,7 +38,8 @@ export class CreateOperation {
             this.categories = response.response;
         }
     }
-    async sendData() {
+    async sendData(e) {
+        e.preventDefault();
         const data = ValidateUtility.serializeForm(this.formEls);
         if (data) {
             const response = await request('/operations', 'POST', true, data);

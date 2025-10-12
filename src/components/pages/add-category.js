@@ -20,9 +20,11 @@ export class AddCategory extends Category {
             this.btnCancelEl.href = '/expense';
         }
         this.btnActionEl.innerText = 'Создать';
+        document.querySelector('.form-container').addEventListener('submit',this.addCategory.bind(this));
         this.btnActionEl.addEventListener('click', this.addCategory.bind(this));
     }
-    async addCategory() {
+    async addCategory(e) {
+        e.preventDefault();
         const data = ValidateUtility.serializeForm(this.formEls);
         if (!data) return;
         await request('/categories/' + this.type, 'POST', true, data);

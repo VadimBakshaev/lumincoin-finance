@@ -5,7 +5,7 @@ export class Main extends Filter {
   constructor(openRoute) {
     super(openRoute);
 
-    this.initChart();
+    this.initChart();    
   }
   initChart() {
     this.titlePageEl.innerText = 'Главная';
@@ -34,12 +34,13 @@ export class Main extends Filter {
     };
     this.incomeChart = this.chartShow(this.chartIncomeEl, this.incomeData);
     this.expensesChart = this.chartShow(this.chartExpensesEl, this.expensesData);
-    this.setEmitter(this.setData.bind(this));      
+    this.setEmitter(this.setData.bind(this));
   }
   setData() {
     this.clearChart(this.incomeChart);
-    this.clearChart(this.expensesChart);    
+    this.clearChart(this.expensesChart);
     if (this.data && this.data.length > 0) {
+      this.data.filter(item => !item.category).forEach(item => item.category = 'Без категории');
       this.data.filter(item => item.type === 'income').forEach((item) => {
         const thereIsIndex = this.incomeChart.data.labels.findIndex(category => category === item.category);
         if (thereIsIndex >= 0) {
@@ -64,13 +65,13 @@ export class Main extends Filter {
     this.incomeChart.update();
     this.expensesChart.update();
   }
-  clearChart(chart){
+  clearChart(chart) {
     chart.data.labels.splice(0, chart.data.labels.length);
     chart.data.datasets[0].backgroundColor.splice(0, chart.data.datasets[0].backgroundColor.length);
     chart.data.datasets[0].data.splice(0, chart.data.datasets[0].data.length);
   }
   getColor() {
-    return '#' + ('000000' + Math.floor(Math.random() * 10000000 + 1).toString(16)).slice(-6);
+    return '#' + ('000000' + Math.floor(Math.random() * 100000000 + 1).toString(16)).slice(-6);
   }
   createChartBox() {
     return `<div class="d-flex flex-wrap gap-1">
@@ -102,5 +103,5 @@ export class Main extends Filter {
         },
       },
     });
-  }
+  }  
 }
