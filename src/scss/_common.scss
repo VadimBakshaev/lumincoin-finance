@@ -30,11 +30,11 @@ body {
     max-width: 25rem;
 }
 
-.input-group-text{
+.input-group-text {
     color: #6C757D;
 }
 
-.bi-chevron-left {
+.bi-chevron-right {
 
     &::before {
         transition: transform .35s ease;
@@ -42,9 +42,9 @@ body {
 }
 
 .btn-toggle[aria-expanded="true"] {
-    .bi-chevron-left {
+    .bi-chevron-right {
         &::before {
-            transform: rotate(-90deg);
+            transform: rotate(90deg);
         }
     }
 }
@@ -110,5 +110,35 @@ body {
 
     @media (min-width: 786px) {
         width: 100%;
+    }
+}
+
+.date-picker-box {
+    width: 265px;
+}
+
+.date-picker {
+    border-collapse: separate;
+    border-spacing: 1em;
+    text-align: center;
+
+    td.current {
+        background-color: darkgray;
+    }
+
+    td.select {
+        color: white;
+        background-color: black;
+    }
+
+    td.after,
+    td.before {
+        color: LightGray;
+    }
+
+    td:hover {
+        cursor: pointer;
+        color: white;
+        background-color: #6C757D;
     }
 }

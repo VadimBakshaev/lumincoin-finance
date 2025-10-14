@@ -8,14 +8,18 @@ export class Signup {
     this.fieldEls = document.querySelectorAll(".form-control");
     this.emailMessageEl = document.getElementById('emailMessage');
     this.btnSubmitEl = document.getElementById("submit");
+    this.init();
+  }
+  init() {
+    document.querySelector('.form-container').addEventListener('submit', this.signup.bind(this));
     this.btnSubmitEl.addEventListener("click", this.signup.bind(this));
   }
-  
-  async signup() {
+  async signup(e) {
+    e.preventDefault();
     this.emailMessageEl.innerText = 'Пожалуйста введите корректный email';
     const data = ValidateUtility.serializeForm(this.fieldEls);
     if (!data) return;
-    const result = await request('/signup', data);
+    const result = await request('/signup', 'POST', false, data);
     if (result.status === 400) {
       if (result.response.validation) {
         result.response.validation.forEach((item) => {

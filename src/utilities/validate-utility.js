@@ -1,5 +1,5 @@
 export class ValidateUtility {
-  
+
   static validateField(field) {
     const value = field.value;
     const rule = field.dataset.rule;
@@ -53,6 +53,8 @@ export class ValidateUtility {
       form.forEach((element) => {
         if (element.id === 'rememberMe') {
           data[element.id] = element.checked
+        } else if (element.id === 'amount' || element.id === 'category_id') {
+          data[element.id] = +element.value;
         } else {
           data[element.id] = element.value;
         }

@@ -1,19 +1,15 @@
 import { Layout } from "../components/layout";
-import { AddCategoryExpenses } from "../components/pages/add-category-expenses";
-import { AddCategoryIncome } from "../components/pages/add-category-income";
-import { CreateExpense } from "../components/pages/create-expense";
-import { CreateIncome } from "../components/pages/create-income";
-import { EditCategoryExpenses } from "../components/pages/edit-category-expenses";
-import { EditCategoryIncome } from "../components/pages/edit-category-income";
-import { EditExpense } from "../components/pages/edit-expense";
-import { EditIncome } from "../components/pages/edit-income";
-import { Expenses } from "../components/pages/expenses";
-import { IncExp } from "../components/pages/inc-exp";
-import { Income } from "../components/pages/income";
+import { AddCategory } from "../components/pages/add-category";
+import { CreateOperation } from "../components/pages/create-operation";
+import { EditCategory } from "../components/pages/edit-category";
+import { EditOperation } from "../components/pages/edit-operation";
+import { Category } from "../components/pages/category";
 import { Login } from "../components/pages/login";
 import { Logout } from "../components/pages/logout";
 import { Main } from "../components/pages/main";
 import { Signup } from "../components/pages/signup";
+import { AuthUtility } from "../utilities/auth-utility";
+import { Operations } from "../components/pages/operations";
 
 export class Router {
   constructor() {
@@ -28,11 +24,11 @@ export class Router {
       {
         route: "/",
         title: "Main",
-        filePath: "/templates/pages/main.html",
+        filePath: "/templates/pages/filter.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Main();
+          new Main(this.openRoute);
         },
       },
       {
@@ -56,113 +52,123 @@ export class Router {
         },
       },
       {
-        route: "/inc-exp",
+        route: "/operations",
         title: "Income & Expenses",
-        filePath: "/templates/pages/inc-exp.html",
+        filePath: "/templates/pages/filter.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new IncExp();
+          new Operations(this.openRoute);
         },
       },
       {
         route: "/income",
         title: "Income",
-        filePath: "/templates/pages/income.html",
+        filePath: "/templates/pages/categories.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Income();
+          const income = new Category(this.openRoute, 'income');
+          income.getData();
         },
       },
       {
         route: "/add-category-income",
         title: "Add Category Income",
-        filePath: "/templates/pages/add-category-income.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new AddCategoryIncome();
+          const addCategory = new AddCategory(this.openRoute, 'income');
+          addCategory.init();
         },
       },
       {
         route: "/edit-category-income",
         title: "Edit Category Income",
-        filePath: "/templates/pages/edit-category-income.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
         depends: "/income",
         load: () => {
-          new EditCategoryIncome();
+          const editCategory = new EditCategory(this.openRoute, 'income');
+          editCategory.init();
         },
       },
       {
-        route: "/expenses",
+        route: "/expense",
         title: "Expenses",
-        filePath: "/templates/pages/expenses.html",
+        filePath: "/templates/pages/categories.html",
         layout: "/templates/layout.html",
         depends: null,
         load: () => {
-          new Expenses();
+          const expense = new Category(this.openRoute, 'expense');
+          expense.getData();
         },
       },
       {
-        route: "/add-category-expenses",
+        route: "/add-category-expense",
         title: "Add Category Expenses",
-        filePath: "/templates/pages/add-category-expenses.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
-        depends: "/expenses",
+        depends: "/expense",
         load: () => {
-          new AddCategoryExpenses();
+          const addCategory = new AddCategory(this.openRoute, 'expense');
+          addCategory.init();
         },
       },
       {
-        route: "/edit-category-expenses",
+        route: "/edit-category-expense",
         title: "Edit Category Expenses",
-        filePath: "/templates/pages/edit-category-expenses.html",
+        filePath: "/templates/pages/action-category.html",
         layout: "/templates/layout.html",
-        depends: "/expenses",
+        depends: "/expense",
         load: () => {
-          new EditCategoryExpenses();
+          const editCategory = new EditCategory(this.openRoute, 'expense');
+          editCategory.init();
         },
       },
       {
         route: "/create-expense",
         title: "Create Expense",
-        filePath: "/templates/pages/create-expense.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new CreateExpense();
+          const createOperation = new CreateOperation(this.openRoute, 'expense');
+          createOperation.init();
         },
       },
       {
         route: "/create-income",
         title: "Create Income",
-        filePath: "/templates/pages/create-income.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new CreateIncome();
+          const createOperation = new CreateOperation(this.openRoute, 'income');
+          createOperation.init();
         },
       },
       {
         route: "/edit-income",
         title: "Edit Income",
-        filePath: "/templates/pages/edit-income.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new EditIncome();
+          const editOperation = new EditOperation(this.openRoute, 'income');
+          editOperation.init();
         },
       },
       {
         route: "/edit-expense",
         title: "Edit Expense",
-        filePath: "/templates/pages/edit-expense.html",
+        filePath: "/templates/pages/action-operation.html",
         layout: "/templates/layout.html",
-        depends: "/inc-exp",
+        depends: "/operations",
         load: () => {
-          new EditExpense();
+          const editOperation = new EditOperation(this.openRoute, 'expense');
+          editOperation.init();
         },
       },
       {
@@ -190,12 +196,13 @@ export class Router {
     }
     if (element && element.href) {
       e.preventDefault();
+      const param = new URL(element.href).search;
       const url = new URL(element.href).pathname;
 
       if (!url || url.replace("#", "") === location.pathname) {
         return;
       }
-      await this.openRoute(url);
+      await this.openRoute(url + param);
     }
   }
 
@@ -209,6 +216,10 @@ export class Router {
     if (newRoute) {
       this.pageTitleEl.innerText = newRoute.title;
       if (newRoute.layout) {
+        if (!AuthUtility.checkAuthorization()) {
+          this.openRoute('/logout');
+          return;
+        };
         if (prevPage && prevPage.layout) {
           await this.#constructTemplate(
             document.getElementById("main-content"),

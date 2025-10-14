@@ -9,7 +9,7 @@
         <ul class="nav nav-pills flex-column mt-4 mb-auto p-3 fs-7">
             <li class="nav-item "><a href="/" class="nav-link"><i
                         class="bi bi-house me-2"></i>Главная</a></li>
-            <li class="nav-item "><a href="/inc-exp" class="nav-link"><i
+            <li class="nav-item "><a href="/operations" class="nav-link"><i
                         class="bi bi-cash-coin me-2"></i>Доходы
                     & Расходы</a></li>
             <li class="nav-item border rounded overflow-hidden">
@@ -18,7 +18,7 @@
                     class="nav-link btn btn-toggle d-inline-flex align-items-center rounded-0 border-0 w-100"
                     data-bs-toggle="collapse" data-bs-target="#category-collapse" aria-expanded="false">
                     Категории
-                    <i class="bi bi-chevron-left ms-auto"></i>
+                    <i class="bi bi-chevron-right ms-auto"></i>
                 </button>
                 </div>
                 <div class="collapse" id="category-collapse">
@@ -26,14 +26,14 @@
                         <li><a href="/income"
                                 class="nav-link d-inline-flex rounded-0 w-100">Доходы</a>
                         </li>
-                        <li><a href="/expenses"
+                        <li><a href="/expense"
                                 class="nav-link d-inline-flex rounded-0 w-100">Расходы</a>
                         </li>
                     </ul>
                 </div>
             </li>
         </ul>
-        <p class="ms-3 mb-0 text-medium fs-7">Баланс: <span class="text-primary" id="balance">500$</span></p>
+        <p class="ms-3 mb-0 text-medium fs-7">Баланс: <input class="text-primary border-0 focus-ring focus-ring-secondary rounded-2 w-50" id="balance" value=""></p>
         <hr>
         <div class="d-flex align-items-center p-3 pt-0 position-relative pointer" id="user">
             <div>

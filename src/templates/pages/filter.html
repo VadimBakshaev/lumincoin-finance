@@ -1,0 +1,44 @@
+<div class="p-4 p-md-8" id="filterBox">
+    <h1 class="fs-1 text-medium mb-6 mt-3" id="titlePage"></h1>    
+    <div class="d-flex flex-wrap my-6 gap-2 gap-lg-3_5 text-medium">
+        <button class="btn btn-outline-secondary filter active" id="day">Сегодня</button>
+        <button class="btn btn-outline-secondary filter" id="week">Неделя</button>
+        <button class="btn btn-outline-secondary filter" id="month">Месяц</button>
+        <button class="btn btn-outline-secondary filter" id="year">Год</button>
+        <button class="btn btn-outline-secondary filter" id="all">Все</button>
+        <button class="btn btn-outline-secondary filter" id="interval">Интервал</button>
+        <div class="position-relative">
+            <span class="">c</span>
+            <button class="btn btn-link text-secondary dropdown-toggle" data-bs-toggle="collapse"
+                data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar" id="fromDay">Дата</button>
+            <span>по</span>
+            <button class="btn btn-link text-secondary dropdown-toggle" data-bs-toggle="collapse"
+                data-bs-target="#collapseCalendar" aria-expanded="false" aria-controls="collapseCalendar" id="toDay">Дата</button>
+            <div class="collapse position-absolute z-2" id="collapseCalendar">
+                <div class="d-flex flex-column justify-content-center align-items-center gap-2 p-2 border rounded bg-white date-picker-box"
+                    id="datePicker">
+                    <div>
+                        <button class="me-4 btn prev"><i class="bi bi-chevron-left"></i></button>
+                        <span id="monthCurrent"></span>
+                        <input class="focus-ring focus-ring-light border-0" type="number" step="1" min="2000" max="2100"
+                            id="yearCurrent">
+                        <button class="btn next"><i class="bi bi-chevron-right"></i></button>
+                    </div>
+                    <table class="date-picker" id="tableMonth"></table>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+
+<div class="modal fade" id="modalDialog" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body text-center p-2 p-md-4 p-lg-6">
+                <h5 class="text-medium fs-5 mb-3_5">Вы действительно хотите удалить операцию?</h5>
+                <button type="button" class="btn btn-primary fs-7" id="delBtn" data-bs-dismiss="modal">Да, удалить</button>
+                <button type="button" class="btn btn-danger fs-7 ms-1" data-bs-dismiss="modal">Не удалять</button>
+            </div>
+        </div>
+    </div>
+</div>
