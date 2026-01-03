@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
-  entry: "./src/js/app.js",
+  entry: "./src/ts/app.ts",
   output: {
     filename: "app.js",
     path: path.resolve(__dirname, "dist"),
@@ -28,7 +28,12 @@ module.exports = {
     }),
   ],
   module: {
-    rules: [      
+    rules: [  
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },    
       {
         test: /\.(scss)$/,
         use: [
@@ -62,5 +67,8 @@ module.exports = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
 };

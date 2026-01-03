@@ -20,6 +20,8 @@
   "homepage": "https://github.com/VadimBakshaev/lumincoin-finance#readme",
   "description": "",
   "devDependencies": {
+    "@types/bootstrap": "^5.2.10",
+    "@types/chart.js": "^2.9.41",
     "autoprefixer": "^10.4.21",
     "chart.js": "^4.5.0",
     "copy-webpack-plugin": "^13.0.1",
@@ -30,6 +32,8 @@
     "sass": "^1.90.0",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.3",
     "webpack": "^5.101.3",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.2"

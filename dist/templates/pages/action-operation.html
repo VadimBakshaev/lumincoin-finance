@@ -1,0 +1,31 @@
+<div class="p-4 p-md-8">
+    <h1 class="fs-1 text-medium mb-6 mt-3" id="titlePage"></h1>
+    <form class="form-container">
+        <select type="text" class="form-control mb-2" placeholder="Тип..." id="type">
+            <option value="expense">расход</option>
+            <option value="income">доход</option>
+        </select>
+        <select type="text" class="form-control" placeholder="Категория..." id="category_id">
+            <option value="" selected disabled>Категория...</option>
+        </select>
+        <div class="invalid-feedback fs-8">
+            Выберите категорию операции
+        </div>
+        <input type="number" class="form-control mt-2" placeholder="Сумма в $..." id="amount">
+        <div class="invalid-feedback fs-8">
+            Введите сумму операции
+        </div>
+        <input type="date" class="form-control mt-2" placeholder="Дата..." id="date">
+        <div class="invalid-feedback fs-8">
+            Введите дату операции
+        </div>
+        <input type="text" class="form-control mt-2" placeholder="Комментарий..." id="comment">
+        <div class="invalid-feedback fs-8">
+            Ведите комментарий к операции
+        </div>
+        <div class="mt-3_5">
+            <button class="btn btn-success fs-7 me-2" type="submit" href="#!" id="actionBtn"></button>
+            <a class="btn btn-danger fs-7" href="/operations">Отмена</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,1 @@
+{"version":3,"file":"chart-data.type.d.ts","sourceRoot":"","sources":["../../src/types/chart-data.type.ts"],"names":[],"mappings":"AAAA,MAAM,MAAM,aAAa,GAAG;IACxB,MAAM,EAAE,MAAM,EAAE,CAAC;IACjB,QAAQ,EAAE,QAAQ,EAAE,CAAC;CACxB,CAAA;AACD,KAAK,QAAQ,GAAG;IACZ,KAAK,EAAE,MAAM,CAAC;IACd,eAAe,EAAE,MAAM,EAAE,CAAC;IAC1B,IAAI,EAAE,MAAM,EAAE,CAAC;CAClB,CAAA"}
